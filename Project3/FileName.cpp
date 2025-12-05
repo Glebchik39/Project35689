@@ -25,7 +25,7 @@ public:
 		name = n;
 	}
 
-	string GetName()
+	string GetName() const
 	{
 		return name;
 	}
@@ -35,7 +35,7 @@ public:
 		age = g;
 	}
 
-	int GetAge()
+	int GetAge() const
 	{
 		return age;
 	}
@@ -64,6 +64,14 @@ public:
 
 
 };
+
+ostream& operator<< (ostream& os, const Student& obj) 
+{
+	os << "Name: " << obj.GetName() << "\t" << "Age: " << obj.GetAge() << endl;
+	return os;
+}
+
+
 typedef pair<Student,Student> mypair;
 
 int main()
@@ -74,61 +82,21 @@ int main()
 	string name;
 	for (size_t i = 0; i < 5; i++)
 	{
+		cout << "Enter a name: ";
 		cin >> name;
+		cout << "Enter a age: ";
 		cin >> age;
 		Student obj(name, age);
 		group.insert(mypair(obj, obj));
 
 	}
-	for (auto el : group)
-    {
-		cout << el.first << "\t" << el.second << endl;
-    }
+	for (auto ptr = group.begin(); ptr != group.end(); ptr++)
+	{
+		cout << ptr->first << "\t" << ptr->second << endl;
+	}
 
 
-	//set<int> Coll;
-	//Coll.insert(5);
-	//Coll.insert(4);
-	//Coll.insert(3);
-	//Coll.insert(2);
-	//Coll.insert(1);
-	//Coll.insert(-5);
-	//Coll.insert(-3);
-	//Coll.insert(-3);
-	//Coll.insert(-3);
-	//Coll.insert(-3);
-	//Coll.insert(-3);
-
-	//for (auto i : Coll)
-	//{
-	//	cout << i << "\t";
-	//}
-	//cout << endl;
-	//for (auto ptr = Coll.begin(); ptr != Coll.end(); ptr++)
-	//{
-	//	cout << *ptr << "\t";
-	//}
-
-
-	//setlocale(0, "ru");
-	//typedef pair<string, string> mypair;
-
-	//map<string, string> dick;
-	//dick.insert(mypair("Dungein", "Павел"));
-	//dick.insert(mypair("cock", "Ренат"));
-	//dick.insert(mypair("jorking", "Глеб"));
-	//dick.insert(mypair("blow job", "Богдан"));
-	//for (auto el : dick)
-	//{
-	//	cout << el.first << ": " << el.second << endl;
-	//}
-
-	//string str;
-	//cin >> str;
-
-	//auto ptr = dick.find(str);
-	//cout << ptr->second << endl;
-	//cout << dick[str] << endl;
+	
 
 
 
